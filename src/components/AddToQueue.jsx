@@ -24,7 +24,7 @@ export default function AddToQueue() {
         ...formData,
         patient_id: parseInt(formData.patient_id.toString().replace(/\D/g, ''), 10)
       });
-      setSuccess(`Appointment confirmed for ${formData.queue_date}! Your Queue Number is ${response.queue_number}. Please take a screenshot of this message and present it to the staff when you arrive at the clinic.`);
+      setSuccess(`Appointment confirmed for ${formData.queue_date}! Patient ID: ${response.patient_id} | Queue Number: ${response.queue_number}. Please take a screenshot of this message and present it to the staff when you arrive at the clinic.`);
       setFormData({ patient_id: '', service_area: '', queue_date: new Date().toISOString().split('T')[0] });
     } catch (err) {
       setError(err?.toString() || 'Failed to add patient to queue. Please check service hours and patient ID.');

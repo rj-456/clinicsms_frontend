@@ -8,7 +8,8 @@ export default function RegisterPatient() {
     last_name: '',
     date_of_birth: '',
     gender: '',
-    contact_number: ''
+    contact_number: '',
+    barangay: ''
   });
   
   const [loading, setLoading] = useState(false);
@@ -57,7 +58,8 @@ export default function RegisterPatient() {
         last_name: '',
         date_of_birth: '',
         gender: '',
-        contact_number: ''
+        contact_number: '',
+        barangay: ''
       });
     } catch (err) {
       setError(err?.toString() || 'An error occurred while registering patient.');
@@ -157,17 +159,46 @@ export default function RegisterPatient() {
           </div>
         </div>
 
-        <div>
-          <label className="block text-sm font-semibold text-slate-700 mb-2">Contact Number</label>
-          <input
-            type="tel"
-            name="contact_number"
-            required
-            value={formData.contact_number}
-            onChange={handleChange}
-            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 outline-none transition-all text-slate-800 font-medium placeholder-slate-400"
-            placeholder="Enter contact number"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">Contact Number</label>
+            <input
+              type="tel"
+              name="contact_number"
+              required
+              value={formData.contact_number}
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 outline-none transition-all text-slate-800 font-medium placeholder-slate-400"
+              placeholder="Enter contact number"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">Barangay</label>
+            <select
+              name="barangay"
+              required
+              value={formData.barangay}
+              onChange={handleChange}
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 outline-none transition-all text-slate-800 font-medium appearance-none"
+            >
+              <option value="" disabled>Select Barangay</option>
+              <option value="San Agustin (Sumpung)">San Agustin (Sumpung)</option>
+              <option value="San Bartolome (Patayum)">San Bartolome (Patayum)</option>
+              <option value="San Isidro (Quenabuan)">San Isidro (Quenabuan)</option>
+              <option value="San Joaquin (Poblacion, Canukil)">San Joaquin (Poblacion, Canukil)</option>
+              <option value="San Jose (Catmun)">San Jose (Catmun)</option>
+              <option value="San Juan (Tinajeru)">San Juan (Tinajeru)</option>
+              <option value="San Nicolas (Sepung Ilug)">San Nicolas (Sepung Ilug)</option>
+              <option value="San Pablo (Darabulbul / Muzun)">San Pablo (Darabulbul / Muzun)</option>
+              <option value="San Pedro (Calumpang)">San Pedro (Calumpang)</option>
+              <option value="San Roque (Tuclung)">San Roque (Tuclung)</option>
+              <option value="Santa Lucia (Calinan)">Santa Lucia (Calinan)</option>
+              <option value="Santa Maria (Balen Bayu)">Santa Maria (Balen Bayu)</option>
+              <option value="Santiago (Libutad)">Santiago (Libutad)</option>
+              <option value="Santo Rosario (Pagbatuan)">Santo Rosario (Pagbatuan)</option>
+            </select>
+          </div>
         </div>
 
         <div className="pt-6 mt-6 border-t border-slate-100">
