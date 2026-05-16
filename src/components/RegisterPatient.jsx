@@ -51,7 +51,7 @@ export default function RegisterPatient() {
     setLoading(true);
     try {
       const response = await api.registerPatient(formData);
-      setSuccess(`Successfully registered! Patient ID: ${response.patient_id}`);
+      setSuccess(`Successfully registered! Your Patient ID is ${response.patient_id}. Please take a screenshot of this message, as you will need it to schedule your clinic appointments.`);
       setFormData({
         first_name: '',
         last_name: '',
@@ -71,10 +71,11 @@ export default function RegisterPatient() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-      <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-        <div className="p-3 bg-blue-50 text-blue-600 rounded-lg">
-          <UserPlus size={24} />
+    <div className="max-w-2xl mx-auto bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-yellow-500"></div>
+      <div className="flex items-center gap-4 mb-8 pb-6 border-b border-slate-100">
+        <div className="p-3.5 bg-blue-900 text-yellow-400 rounded-xl shadow-md">
+          <UserPlus size={26} strokeWidth={2.5} />
         </div>
         <div>
           <h2 className="text-2xl font-bold text-gray-800">Register Patient</h2>
@@ -99,27 +100,27 @@ export default function RegisterPatient() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">First Name</label>
             <input
               type="text"
               name="first_name"
               required
               value={formData.first_name}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 outline-none transition-all text-slate-800 font-medium placeholder-slate-400"
               placeholder="Enter first name"
             />
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">Last Name</label>
             <input
               type="text"
               name="last_name"
               required
               value={formData.last_name}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 outline-none transition-all text-slate-800 font-medium placeholder-slate-400"
               placeholder="Enter last name"
             />
           </div>
@@ -127,7 +128,7 @@ export default function RegisterPatient() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">Date of Birth</label>
             <input
               type="date"
               name="date_of_birth"
@@ -135,18 +136,18 @@ export default function RegisterPatient() {
               value={formData.date_of_birth}
               onChange={handleChange}
               max={new Date().toISOString().split('T')[0]}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 outline-none transition-all text-slate-800 font-medium"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Gender</label>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">Gender</label>
             <select
               name="gender"
               required
               value={formData.gender}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all bg-white"
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 outline-none transition-all text-slate-800 font-medium appearance-none"
             >
               <option value="" disabled>Select Gender</option>
               <option value="Male">Male</option>
@@ -157,23 +158,23 @@ export default function RegisterPatient() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Contact Number</label>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">Contact Number</label>
           <input
             type="tel"
             name="contact_number"
             required
             value={formData.contact_number}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 outline-none transition-all text-slate-800 font-medium placeholder-slate-400"
             placeholder="Enter contact number"
           />
         </div>
 
-        <div className="pt-4 border-t border-gray-100">
+        <div className="pt-6 mt-6 border-t border-slate-100">
           <button
             type="submit"
             disabled={loading}
-            className="w-full md:w-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all disabled:opacity-70 flex items-center justify-center gap-2"
+            className="w-full md:w-auto px-8 py-3.5 bg-blue-900 hover:bg-blue-800 text-yellow-400 font-bold tracking-wide rounded-xl shadow-lg shadow-blue-900/20 focus:ring-4 focus:ring-blue-100 transition-all disabled:opacity-70 flex items-center justify-center gap-2"
           >
             {loading ? (
               <>
